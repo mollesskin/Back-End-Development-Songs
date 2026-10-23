@@ -1,0 +1,9 @@
+HTTP/1.1 201 CREATED
+Server: Werkzeug/2.1.2 Python/3.9.25
+Date: Fri, 23 Oct 2026 03:28:12 GMT
+Content-Type: application/json
+Content-Length: 97
+Connection: close
+
+{"_id":{"$oid":"6adad43c66c15ad2487da564"},"id":1,"lyrics":"yay hey yay yay","title":"yay song"}
+
