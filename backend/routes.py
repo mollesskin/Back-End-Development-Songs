@@ -34,7 +34,7 @@ else:
     url = f"mongodb://{mongodb_service}"
 
 
-print(f"connecting to url: {url}")
+app.logger.info("Connecting to MongoDB")
 
 try:
     client = MongoClient(url)
@@ -42,8 +42,9 @@ except OperationFailure as e:
     app.logger.error(f"Authentication error: {str(e)}")
 
 db = client.songs
-db.songs.drop()
-db.songs.insert_many(songs_list)
+# Preserve user changes across restarts; seed only an empty collection.
+if db.songs.count_documents({}) == 0:
+    db.songs.insert_many(songs_list)
 
 def parse_json(data):
     return json.loads(json_util.dumps(data))
